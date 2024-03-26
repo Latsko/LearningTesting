@@ -4,7 +4,6 @@ import latsko.springboottesting.exception.ResourceNotFoundException;
 import latsko.springboottesting.model.Employee;
 import latsko.springboottesting.repository.EmployeeRepository;
 import latsko.springboottesting.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
