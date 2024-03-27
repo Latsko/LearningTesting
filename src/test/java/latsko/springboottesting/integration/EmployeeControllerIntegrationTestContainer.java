@@ -12,9 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@Testcontainers
-public class EmployeeControllerIntegrationTestContainer {
-
-    @Container
-    private static MySQLContainer mySQLContainer = new MySQLContainer("mysql:latest")
-            .withUsername("username")
-            .withPassword("password")
-            .withDatabaseName("ems");
+public class EmployeeControllerIntegrationTestContainer extends AbstractContainerBaseTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -152,7 +142,7 @@ public class EmployeeControllerIntegrationTestContainer {
         Employee updatedEmployee = createEmployee("updatedName", "updatedSurname", "updated@gmail.com");
 
         //when
-        ResultActions response = mockMvc.perform(put("/api/employees/{id}", employeeId)
+        ResultActions response = mockMvc.perform(put("/api/employees/{id}", employeeId+1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(updatedEmployee)));
 

@@ -1,5 +1,6 @@
 package latsko.springboottesting.repository;
 
+import latsko.springboottesting.integration.AbstractContainerBaseTest;
 import latsko.springboottesting.model.Employee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class EmployeeRepositoryIntegrationTest {
+public class EmployeeRepositoryIntegrationTest extends AbstractContainerBaseTest {
     @Autowired
     private EmployeeRepository employeeRepository;
 
